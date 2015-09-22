@@ -2,66 +2,234 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:regular,bold,italic,thin,light,bolditalic,black,medium&amp;lang=en">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-    <link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.red-amber.min.css" />
-	<script src="https://storage.googleapis.com/code.getmdl.io/1.0.4/material.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
+    <script src="validacao.js"></script>
   </head>
   <body>
-	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
-		<header class="mdl-layout__header">
-			<div class="mdl-layout__header-row">
-			  <span class="mdl-layout-title">
-				<button class="mdl-button mdl-js-button mdl-js-ripple-effect">
-					Carros Angulares
-				</button>
-			  </span>
-			  <div class="mdl-layout-spacer"></div>
-			  <nav class="mdl-navigation mdl-layout--large-screen-only">
-				<button class="mdl-button mdl-js-button mdl-button--icon">
-					<i class="material-icons">search</i>
-				</button>
-				<button class="mdl-button mdl-js-button mdl-button--icon">
-					<i class="material-icons">add</i>
-				</button>
-			  </nav>
-			</div>
-		</header>
-	</div>
-	<main class="mdl-layout__content">
-		<div class="mdl-layout__tab-panel is-active" id="overview">
-          <section class="section--center mdl-grid mdl-grid--no-spacing mdl-shadow--2dp">
-            <header class="section__play-btn mdl-cell mdl-cell--3-col-desktop mdl-cell--2-col-tablet mdl-cell--4-col-phone mdl-color--teal-100 mdl-color-text--white">
-              <i class="material-icons">play_circle_filled</i>
-            </header>
-            <div class="mdl-card mdl-cell mdl-cell--9-col-desktop mdl-cell--6-col-tablet mdl-cell--4-col-phone">
-              <div class="mdl-card__supporting-text">
-                <h4>Features</h4>
-                Dolore ex deserunt aute fugiat aute nulla ea sunt aliqua nisi cupidatat eu. Nostrud in laboris labore nisi amet do dolor eu fugiat consectetur elit cillum esse.
-              </div>
-              <div class="mdl-card__actions">
-                <a href="#" class="mdl-button">Read our features</a>
-              </div>
-            </div>
-            <button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="btn1">
-              <i class="material-icons">more_vert</i>
-            </button>
-            <ul class="mdl-menu mdl-js-menu mdl-menu--bottom-right" for="btn1">
-              <li class="mdl-menu__item">Lorem</li>
-              <li class="mdl-menu__item" disabled>Ipsum</li>
-              <li class="mdl-menu__item">Dolor</li>
-            </ul>
-          </section>
+  	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">CARROS ANGULARES</a>
+	    </div>
+	    <div class="collapse navbar-collapse">
+	      <ul class="nav navbar-nav navbar-right">
+	        <li><a href="#">Busca</a></li>
+	        <li><a href="#">Adicionar Carro</a></li>
+	      </ul>
+	    </div>
+	  </div>
+	</nav>
+	<div class="container">
+		<div class="panel panel-primary">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Busca</h3>
 		  </div>
-	</main>
-	<footer class="mdl-mini-footer">
-		<div class="mdl-mini-footer__left-section">
-			<div class="mdl-logo">Carros Angulares</div>
-			<ul class="mdl-mini-footer__link-list">
-			<li><a href="#">Ajuda</a></li>
-			<li><a href="#">Termos e Políticas</a></li>
-			</ul>
+		  <div class="panel-body">
+			  <form role="form" id="formBusca">
+			    <div class="form-group">
+			      <label for="tipo" class="col-lg-2 control-label">Tipo</label>
+			      <div class="col-lg-10">
+			        <div class="checkbox">
+			          <label>
+			            <input type="checkbox" name="tipoNovo" checked=""> Novo
+			          </label>
+			        </div>
+			        <div class="checkbox">
+			          <label>
+			            <input type="checkbox" name="tipoUsado" checked=""> Usado
+			          </label>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label class="col-lg-2 control-label">Categoria</label>
+			      <div class="col-lg-10">
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catCarro" value="option1" checked="">
+			            Carro
+			        </div>
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catMoto" value="option2">
+			            Moto
+			          </label>
+			        </div>
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catCaminhao" value="option2">
+			            Caminhão
+			          </label>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="marca" class="col-lg-2 control-label">Marca</label>
+			      <div class="col-lg-10">
+			        <select class="form-control" id="marca" name="marca">
+			          <option>FIAT</option>
+			          <option>Ferrari</option>
+			          <option>Lamborghini</option>
+			          <option>Audi</option>
+			        </select>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="palavraChave" class="col-lg-2 control-label">Palavra Chave</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="palavraChave" name="palavraChave" placeholder="Digite uma palavra chave">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="anoDe" class="col-lg-2 control-label">Ano De</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="anoDe" name="anoDe" placeholder="Digite o ano mínimo">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="anoAte" class="col-lg-2 control-label">Ano Até</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="anoAte" name="anoAte" placeholder="Digite o ano máximo">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="precoDe" class="col-lg-2 control-label">Preço De</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="precoDe" name="precoDe" placeholder="Digite o preço mínimo">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="precoAte" class="col-lg-2 control-label">Preço Até</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="anoAte" name="anoAte" placeholder="Digite o preço máximo">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <div class="col-lg-10 col-lg-offset-2">
+			        <button type="reset" class="btn btn-default espaco-botao">Limpar</button>
+			        <button type="submit" class="btn btn-primary espaco-botao">Buscar</button>
+			      </div>
+			    </div>
+			</form>
+		  </div>
 		</div>
-	</footer>
+		<div class="panel panel-info">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Fiat UNO 1989</h3>
+		  </div>
+		  <div class="panel-body">
+		    <img src="carro.jpg" class="imagem">
+		    Categoria : Carro</br>
+		    Marca : Disney</br>
+		    Tipo : Imaginário</br>
+		    Modelo : Whatever</br>
+		    Ano : 2012</br>
+		    Preço : R$ 21.321,32</br>
+		    Proprietário : Valdisney</br>
+		    Placa : XPTO</br>
+		    Cor : Vermelha</br>
+		    Data Aquisição : 01/01/2015</br>
+		    Obs : Qualquer coisa será escrita aqui nesse lugar
+		  </div>
+		</div>
+		<div class="panel panel-success">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">Cadastro Carro</h3>
+		  </div>
+		  <div class="panel-body">
+		    <form role="form" name="formCarro" id="formCarro">
+		    	<div class="form-group">
+			      <label class="col-lg-2 control-label">Tipo</label>
+			      <div class="col-lg-10">
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="tipo" id="tipoNovo" value="option1" checked="">
+			            Novo
+			        </div>
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="tipo" id="tipoUsado" value="option2">
+			            Usado
+			          </label>
+			        </div>
+			      </div>
+			    </div>
+		    	<div class="form-group">
+			      <label class="col-lg-2 control-label">Categoria</label>
+			      <div class="col-lg-10">
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catCarro" value="option1" checked="">
+			            Carro
+			        </div>
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catMoto" value="option2">
+			            Moto
+			          </label>
+			        </div>
+			        <div class="radio">
+			          <label>
+			            <input type="radio" name="categoria" id="catCaminhao" value="option2">
+			            Caminhão
+			          </label>
+			        </div>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="marca" class="col-lg-2 control-label">Marca</label>
+			      <div class="col-lg-10">
+			        <select class="form-control" id="marca" name="marca">
+			          <option>FIAT</option>
+			          <option>Ferrari</option>
+			          <option>Lamborghini</option>
+			          <option>Audi</option>
+			        </select>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="modelo" class="col-lg-2 control-label">Modelo</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="modelo" name="modelo" placeholder="Digite o modelo do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="ano" class="col-lg-2 control-label">Ano</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="ano" name="ano" placeholder="Digite o ano do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="preco" class="col-lg-2 control-label">Preço</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="preco" name="preco" placeholder="Digite o preço do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="proprietario" class="col-lg-2 control-label">Proprietário</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="proprietario" name="proprietario" placeholder="Digite o proprietário do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="placa" class="col-lg-2 control-label">Placa</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="placa" name="placa" placeholder="Digite a placa do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="cor" class="col-lg-2 control-label">Cor</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="cor" name="cor" placeholder="Digite a placa do carro">
+			      </div>
+			    </div>
+		    </form>
+		  </div>
+		</div>
+	</div>
   </body>
 </html>
