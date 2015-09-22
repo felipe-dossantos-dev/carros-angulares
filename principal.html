@@ -7,28 +7,30 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/jquery.validate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.14.0/additional-methods.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.15/angular.min.js"></script>
     <script src="validacao.js"></script>
+    <script src="app.js"></script>
   </head>
-  <body>
-  	<nav class="navbar navbar-default">
+  <body ng-app='carrosAngulares'>
+  	<nav class="navbar navbar-default" >
 	  <div class="container-fluid">
 	    <div class="navbar-header">
 	      <a class="navbar-brand" href="#">CARROS ANGULARES</a>
 	    </div>
 	    <div class="collapse navbar-collapse">
 	      <ul class="nav navbar-nav navbar-right">
-	        <li><a href="#">Busca</a></li>
+	        <li><a href="#" >Busca</a></li>
 	        <li><a href="#">Adicionar Carro</a></li>
 	      </ul>
 	    </div>
 	  </div>
 	</nav>
 	<div class="container">
-		<div class="panel panel-primary">
-		  <div class="panel-heading">
+		<div class="panel panel-primary" ng-controller="BuscaController as busca">
+		  <div class="panel-heading" ng-click='busca.clickBusca()'>
 		    <h3 class="panel-title">Busca</h3>
 		  </div>
-		  <div class="panel-body">
+		  <div class="panel-body"  ng-show='busca.mostrarBusca'>
 			  <form role="form" id="formBusca">
 			    <div class="form-group">
 			      <label for="tipo" class="col-lg-2 control-label">Tipo</label>
@@ -224,7 +226,32 @@
 			    <div class="form-group">
 			      <label for="cor" class="col-lg-2 control-label">Cor</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="cor" name="cor" placeholder="Digite a placa do carro">
+			        <input type="text" class="form-control" id="cor" name="cor" placeholder="Digite a cor do carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="dataAquisicao" class="col-lg-2 control-label">Data de Aquisição</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="dataAquisicao" name="dataAquisicao" placeholder="Digite a data de aquisição carro">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="observacoes" class="col-lg-2 control-label">Observações</label>
+			      <div class="col-lg-10">
+			        <textarea class="form-control" rows="3" id="observacoes" name="observacoes"></textarea>
+			        <span class="help-block">Descreva as observações sobre o carro</span>
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <label for="upload" class="col-lg-2 control-label">Upload de foto</label>
+			      <div class="col-lg-10">
+			        <input type="text" class="form-control" id="upload" name="upload" placeholder="upload de foto no futuro se der tempo">
+			      </div>
+			    </div>
+			    <div class="form-group">
+			      <div class="col-lg-10 col-lg-offset-2">
+			        <button type="reset" class="btn btn-default espaco-botao">Limpar</button>
+			        <button type="submit" class="btn btn-primary espaco-botao">Buscar</button>
 			      </div>
 			    </div>
 		    </form>
