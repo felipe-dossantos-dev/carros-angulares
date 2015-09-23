@@ -1,0 +1,28 @@
+[
+    {
+        "categoria": "Carro",
+        "marca": "Disney",
+        "tipo": "Imaginario",
+        "modelo": "Whaterver",
+        "ano": "2012",
+        "preco": "21321.23",
+        "proprietario": "Valdisney",
+        "placa": "XPTO",
+        "cor": "Vermelha",
+        "dataAquisicao": "01/01/2015",
+        "obs": "Qualquer coisa será escrita aqui nesse lugar"
+    },
+    {
+        "categoria": "Caminhão",
+        "marca": "Shell",
+        "tipo": "Novo",
+        "modelo": "Truck fodao",
+        "ano": "2014",
+        "preco": "6666.23",
+        "proprietario": "Ayslao",
+        "placa": "LSLS-984384",
+        "cor": "Branco com Vermelho",
+        "dataAquisicao": "01/01/2015",
+        "obs": "Qualquer coisa será escrita aqui nesse lugar"
+    }
+]
