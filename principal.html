@@ -31,18 +31,18 @@
 		    <h3 class="panel-title">Busca</h3>
 		  </div>
 		  <div class="panel-body">
-			  <form role="form" id="formBusca" novalidate>
+			  <form role="form" id="formBusca" novalidate ng-controller="FiltroController as filtro" ng-submit="filtro.sendPost()">
 			    <div class="form-group">
 			      <label for="tipo" class="col-lg-2 control-label">Tipo</label>
 			      <div class="col-lg-10">
 			        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" name="tipoNovo" checked=""> Novo
+			            <input type="checkbox" name="1" checked="" ng-model="filtro.tipo"> Novo
 			          </label>
 			        </div>
 			        <div class="checkbox">
 			          <label>
-			            <input type="checkbox" name="tipoUsado" checked=""> Usado
+			            <input type="checkbox" name="2" checked="" ng-model="filtro.tipo"> Usado
 			          </label>
 			        </div>
 			      </div>
@@ -52,18 +52,18 @@
 			      <div class="col-lg-10">
 			        <div class="radio">
 			          <label>
-			            <input type="radio" name="categoria" id="catCarro" value="1" checked="">
+			            <input type="radio" name="categoria" id="categoria" value="1" ng-model="filtro.categoria" checked="">
 			            Carro
 			        </div>
 			        <div class="radio">
 			          <label>
-			            <input type="radio" name="categoria" id="catMoto" value="2">
+			            <input type="radio" name="categoria" id="categoria" value="2" ng-model="filtro.categoria">
 			            Moto
 			          </label>
 			        </div>
 			        <div class="radio">
 			          <label>
-			            <input type="radio" name="categoria" id="catCaminhao" value="3">
+			            <input type="radio" name="categoria" id="catCaminhao" value="3" ng-model="filtro.categoria">
 			            Caminhão
 			          </label>
 			        </div>
@@ -71,43 +71,40 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="marca" class="col-lg-2 control-label">Marca</label>
-			      <div class="col-lg-10">
+			      <div class="col-lg-10" ng-controller="MarcasController as marcas">
 			        <select class="form-control" id="marca" name="marca">
-			          <option>FIAT</option>
-			          <option>Ferrari</option>
-			          <option>Lamborghini</option>
-			          <option>Audi</option>
+			          <option ng-repeat="marca in marcas.marcas" value="{{marca.id}}">{{marca.descricao}}</option>
 			        </select>
 			      </div>
 			    </div>
 			    <div class="form-group">
 			      <label for="palavraChave" class="col-lg-2 control-label">Palavra Chave</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="palavraChave" name="palavraChave" placeholder="Digite uma palavra chave">
+			        <input type="text" class="form-control" ng-model="filtro.palavraChave" id="palavraChave" name="palavraChave" placeholder="Digite uma palavra chave">
 			      </div>
 			    </div>
 			    <div class="form-group">
 			      <label for="anoDe" class="col-lg-2 control-label">Ano De</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="anoDe" name="anoDe" placeholder="Digite o ano mínimo">
+			        <input type="text" class="form-control" id="anoDe" ng-model="filtro.anoDe" name="anoDe" placeholder="Digite o ano mínimo">
 			      </div>
 			    </div>
 			    <div class="form-group">
 			      <label for="anoAte" class="col-lg-2 control-label">Ano Até</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="anoAte" name="anoAte" placeholder="Digite o ano máximo">
+			        <input type="text" class="form-control" id="anoAte" name="anoAte" ng-model="filtro.anoAte" placeholder="Digite o ano máximo">
 			      </div>
 			    </div>
 			    <div class="form-group">
 			      <label for="precoDe" class="col-lg-2 control-label">Preço De</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="precoDe" name="precoDe" placeholder="Digite o preço mínimo">
+			        <input type="text" class="form-control" id="precoDe" name="precoDe" ng-model="filtro.precoDe" placeholder="Digite o preço mínimo">
 			      </div>
 			    </div>
 			    <div class="form-group">
 			      <label for="precoAte" class="col-lg-2 control-label">Preço Até</label>
 			      <div class="col-lg-10">
-			        <input type="text" class="form-control" id="anoAte" name="anoAte" placeholder="Digite o preço máximo">
+			        <input type="text" class="form-control" id="anoAte" name="anoAte" ng-model="filtro.precoAte" placeholder="Digite o preço máximo">
 			      </div>
 			    </div>
 			    <div class="form-group">
@@ -123,7 +120,7 @@
 			<div ng-repeat="carro in carrosCtrl.carros">
 				<div class="panel panel-info">
 				  <div class="panel-heading">
-				    <h3 class="panel-title">Fiat UNO 1989</h3>
+				    <h3 class="panel-title">{{carro.modelo + " " + carro.ano}}</h3>
 				  </div>
 				  <div class="panel-body">
 				    <img src="carro.jpg" class="imagem">
@@ -132,11 +129,11 @@
 				    Tipo : {{carro.tipo}}</br>
 				    Modelo : {{carro.modelo}}</br>
 				    Ano : {{carro.ano}}</br>
-				    Preço : {{carro.preco | currency : "R$"}}</br>
+				    Preço : {{"R$" + carro.preco}}</br>
 				    Proprietário : {{carro.proprietario}}</br>
 				    Placa : {{carro.placa}}</br>
 				    Cor : {{carro.cor}}</br>
-				    Data Aquisição : {{formataData(carro.dataAquisicao) | date:'dd/MM/yyyy'}}</br>
+				    Data Aquisição : {{carro.dataAquisicao}}</br>
 				    Obs : {{carro.obs}}
 				  </div>
 				</div>
@@ -188,12 +185,9 @@
 			    </div>
 			    <div class="form-group">
 			      <label for="marca" class="col-lg-2 control-label">Marca</label>
-			      <div class="col-lg-10">
-			        <select class="form-control" id="marca" name="marca" ng-model="novoCarro.marca">
-			          <option value="1">FIAT</option>
-			          <option value="2">Ferrari</option>
-			          <option value="3">Lamborghini</option>
-			          <option value="4">Audi</option>
+			      <div class="col-lg-10" ng-controller="MarcasController as marcas">
+			        <select class="form-control" id="marca" name="marca">
+			          <option ng-repeat="marca in marcas.marcas" value="{{marca.id}}" ng-model="marca.novoCarro.marca">{{marca.descricao}}</option>
 			        </select>
 			      </div>
 			    </div>

@@ -8,14 +8,25 @@ namespace CarrosAngulares.Carro
     {
         static ICarroRepository repo = new CarroRepository();
 
-        public List<CarrosAngulares.Carro.Carro> listarCarros()
+        public List<CarrosAngulares.Carro.Carro> listarDestaques()
         {
-            return repo.listarCarros();
+            return repo.listarDestaques();
         }
 
         public bool adicionarCarro(CarrosAngulares.Carro.Carro car)
         {
             return repo.adicionarCarro(car);
+        }
+
+        public List<Carro> listarFiltro(Filtro filtro)
+        {
+            return repo.listarFiltro(filtro);
+        }
+
+
+        public List<Marca> listarMarcas()
+        {
+            return repo.listarMarcas();
         }
     }
 }

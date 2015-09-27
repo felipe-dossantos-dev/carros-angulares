@@ -1,4 +1,4 @@
-$(function(){
+	$(function(){
 	$("#formBusca").validate({
 		rules:{
 			precoDe : {

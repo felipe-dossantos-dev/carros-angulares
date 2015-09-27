@@ -13,10 +13,18 @@ namespace CarrosAngulares.Carro
     {
         [OperationContract]
         [WebInvoke(Method="GET", RequestFormat=WebMessageFormat.Json, ResponseFormat=WebMessageFormat.Json, UriTemplate="Carros/")]
-        List<Carro> listarCarros();
+        List<Carro> listarDestaques();
+
+        [OperationContract]
+        [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "CarrosFiltro/", BodyStyle = WebMessageBodyStyle.WrappedRequest)]
+        List<Carro> listarFiltro([FromBody]Filtro filtro);
 
         [OperationContract]
         [WebInvoke(Method = "POST", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "Novo/", BodyStyle = WebMessageBodyStyle.WrappedRequest)]
-        bool adicionarCarro([FromBody]Carro car); 
+        bool adicionarCarro([FromBody]Carro car);
+
+        [OperationContract]
+        [WebInvoke(Method = "GET", RequestFormat = WebMessageFormat.Json, ResponseFormat = WebMessageFormat.Json, UriTemplate = "Marcas/")]
+        List<Marca> listarMarcas();
     }
 }
